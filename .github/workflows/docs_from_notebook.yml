@@ -1,0 +1,47 @@
+name: Sync notebooks to Mintlify docs
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "notebooks/*.ipynb"
+      - "scripts/convert.py"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # (선택) GitHub가 캐시해둔 Python을 쓰는 쪽이 보통 더 빠름 :contentReference[oaicite:3]{index=3}
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+
+      # 프로젝트 의존성 설치 (lock 기반이면 --locked 권장) :contentReference[oaicite:4]{index=4}
+      # nbconvert/jupyter를 dev-deps로 넣어두면 여기서 같이 설치됨
+      - name: Sync dependencies
+        run: uv sync --locked --dev
+
+      - name: Convert notebooks to MDX + update docs.json
+        run: uv run python scripts/convert.py
+
+      - name: Commit changes (generated docs)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/notebooks docs/docs.json
+          git diff --cached --quiet || git commit -m "docs: sync notebooks"
+          git push
