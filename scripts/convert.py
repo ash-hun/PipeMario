@@ -8,7 +8,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 NB_DIR = REPO_ROOT / "notebooks"
 DOCS_DIR = REPO_ROOT / "docs"
 OUT_DIR = DOCS_DIR / "notebooks"
-DOCS_JSON = DOCS_DIR / "docs.json"
+MINT_JSON = DOCS_DIR / "mint.json"
 
 def nb_to_mdx(nb_path: Path, out_path: Path):
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -36,16 +36,16 @@ def nb_to_mdx(nb_path: Path, out_path: Path):
     out_path.write_text(frontmatter + md, encoding="utf-8")
     tmp_md.unlink(missing_ok=True)
 
-def load_docs_json():
-    data = json.loads(DOCS_JSON.read_text(encoding="utf-8"))
+def load_mint_json():
+    data = json.loads(MINT_JSON.read_text(encoding="utf-8"))
     return data
 
-def save_docs_json(data):
-    DOCS_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+def save_mint_json(data):
+    MINT_JSON.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 def ensure_nav_page(data, page_slug: str):
     """
-    docs.json navigation에 'notebooks/<slug>' 페이지가 없으면 추가.
+    mint.json navigation에 'notebooks/<slug>' 페이지가 없으면 추가.
     "Notebooks" 탭 아래 "Notebooks" 그룹에 페이지를 추가합니다.
     """
     nav = data.get("navigation", {})
@@ -86,7 +86,7 @@ def main():
         print(f"Skip: {NB_DIR} not found")
         return
 
-    data = load_docs_json()
+    data = load_mint_json()
 
     for nb in sorted(NB_DIR.glob("*.ipynb")):
         out = OUT_DIR / f"{nb.stem}.mdx"
@@ -96,7 +96,7 @@ def main():
         slug = f"notebooks/{nb.stem}"
         data = ensure_nav_page(data, slug)
 
-    save_docs_json(data)
+    save_mint_json(data)
     print("Synced notebooks → docs")
 
 if __name__ == "__main__":
