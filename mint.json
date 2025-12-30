@@ -8,66 +8,44 @@
   "colors": {
     "primary": "#3B82F6"
   },
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Docs",
-        "groups": [
-          {
-            "group": "Getting Started",
-            "pages": [
-              "introduction",
-              "quickstart"
-            ]
-          },
-          {
-            "group": "Guides",
-            "pages": [
-              "guides/overview",
-              "guides/project-structure",
-              "guides/troubleshooting"
-            ]
-          },
-          {
-            "group": "Reference",
-            "pages": [
-              "reference/config",
-              "reference/cli",
-              "reference/faq"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Notebooks",
-        "groups": [
-          {
-            "group": "Index",
-            "pages": [
-              "notebooks/index"
-            ]
-          },
-          {
-            "group": "Notebooks",
-            "pages": [
-              "notebooks/00_test"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Changelog",
-        "groups": [
-          {
-            "group": "Releases",
-            "pages": [
-              "changelog"
-            ]
-          }
-        ]
-      }
-    ]
-  },
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "introduction",
+        "quickstart"
+      ]
+    },
+    {
+      "group": "Guides",
+      "pages": [
+        "guides/overview",
+        "guides/project-structure",
+        "guides/troubleshooting"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": [
+        "reference/config",
+        "reference/cli",
+        "reference/faq"
+      ]
+    },
+    {
+      "group": "Notebooks",
+      "pages": [
+        "notebooks/index",
+        "notebooks/00_test"
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": [
+        "changelog"
+      ]
+    }
+  ],
   "footerSocials": {
     "github": "https://github.com/ash-hun/PipeMario"
   }

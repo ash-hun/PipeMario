@@ -46,38 +46,27 @@ def save_mint_json(data):
 def ensure_nav_page(data, page_slug: str):
     """
     mint.json navigation에 'notebooks/<slug>' 페이지가 없으면 추가.
-    "Notebooks" 탭 아래 "Notebooks" 그룹에 페이지를 추가합니다.
+    "Notebooks" 그룹에 페이지를 추가합니다.
     """
-    nav = data.get("navigation", {})
-    tabs = nav.get("tabs", [])
+    nav = data.get("navigation", [])
 
-    # "Notebooks" 탭을 찾거나 생성
-    notebooks_tab = None
-    for t in tabs:
-        if t.get("tab") == "Notebooks":
-            notebooks_tab = t
+    # "Notebooks" 그룹 찾기
+    notebooks_group = None
+    for group in nav:
+        if group.get("group") == "Notebooks":
+            notebooks_group = group
             break
-    if notebooks_tab is None:
-        notebooks_tab = {"tab": "Notebooks", "groups": []}
-        tabs.append(notebooks_tab)
 
-    groups = notebooks_tab.setdefault("groups", [])
+    # Notebooks 그룹이 없으면 생성
+    if notebooks_group is None:
+        notebooks_group = {"group": "Notebooks", "pages": []}
+        nav.append(notebooks_group)
 
-    # "Notebooks" 그룹 찾거나 생성
-    nb_group = None
-    for g in groups:
-        if g.get("group") == "Notebooks":
-            nb_group = g
-            break
-    if nb_group is None:
-        nb_group = {"group": "Notebooks", "pages": []}
-        groups.append(nb_group)
-
-    pages = nb_group.setdefault("pages", [])
+    # 페이지 추가
+    pages = notebooks_group.setdefault("pages", [])
     if page_slug not in pages:
         pages.append(page_slug)
 
-    nav["tabs"] = tabs
     data["navigation"] = nav
     return data
 
