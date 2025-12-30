@@ -8,7 +8,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 NB_DIR = REPO_ROOT / "notebooks"
 DOCS_DIR = REPO_ROOT / "docs"
 OUT_DIR = DOCS_DIR / "notebooks"
-MINT_JSON = DOCS_DIR / "mint.json"
+MINT_JSON = REPO_ROOT / "mint.json"
 
 def nb_to_mdx(nb_path: Path, out_path: Path):
     out_path.parent.mkdir(parents=True, exist_ok=True)
