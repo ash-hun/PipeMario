@@ -81,8 +81,8 @@ def main():
         out = OUT_DIR / f"{nb.stem}.mdx"
         nb_to_mdx(nb, out)
 
-        # Mintlify page slug: docs 폴더 기준 상대경로(확장자 없이)
-        slug = f"notebooks/{nb.stem}"
+        # Mintlify page slug: 프로젝트 루트 기준 상대경로(확장자 없이)
+        slug = f"docs/notebooks/{nb.stem}"
         data = ensure_nav_page(data, slug)
 
     save_mint_json(data)
