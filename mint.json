@@ -37,7 +37,8 @@
       "group": "Notebooks",
       "pages": [
         "docs/notebooks/index",
-        "docs/notebooks/00_test"
+        "docs/notebooks/00_test",
+        "docs/notebooks/01_test2"
       ]
     },
     {
