@@ -1,4 +1,5 @@
 {
+  "$schema": "https://mintlify.com/schema.json",
   "name": "PipeMario",
   "logo": {
     "light": "/images/logo-light.svg",
@@ -12,37 +13,37 @@
     {
       "group": "Getting Started",
       "pages": [
-        "introduction",
-        "quickstart"
+        "docs/introduction",
+        "docs/quickstart"
       ]
     },
     {
       "group": "Guides",
       "pages": [
-        "guides/overview",
-        "guides/project-structure",
-        "guides/troubleshooting"
+        "docs/guides/overview",
+        "docs/guides/project-structure",
+        "docs/guides/troubleshooting"
       ]
     },
     {
       "group": "Reference",
       "pages": [
-        "reference/config",
-        "reference/cli",
-        "reference/faq"
+        "docs/reference/config",
+        "docs/reference/cli",
+        "docs/reference/faq"
       ]
     },
     {
       "group": "Notebooks",
       "pages": [
-        "notebooks/index",
-        "notebooks/00_test"
+        "docs/notebooks/index",
+        "docs/notebooks/00_test"
       ]
     },
     {
       "group": "Changelog",
       "pages": [
-        "changelog"
+        "docs/changelog"
       ]
     }
   ],
